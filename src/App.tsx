@@ -7,18 +7,14 @@ import { IPizzaItem } from './interfaces';
 import { Cart, Home } from './pages';
 import { setPizzas } from './redux/actions/pizzas';
 
-interface ServerData {
-  pizzas: IPizzaItem[]
-}
-
 const App: React.FC = () => {
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    axios.get<ServerData>('http://localhost:3000/db.json')
+    axios.get<IPizzaItem[]>('http://localhost:3001/pizzas')
       .then(({ data }) => {
-        dispatch(setPizzas(data.pizzas));
+        dispatch(setPizzas(data));
       });
   }, [])
 
