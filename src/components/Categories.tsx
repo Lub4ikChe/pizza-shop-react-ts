@@ -1,15 +1,18 @@
 import React from 'react'
+import { CategoryItem } from '../redux/reducers/filters';
 
 interface ICategories {
     items: Array<string>,
+    onClickItem: (name: CategoryItem) => void,
 }
 
-export const Categories: React.FC<ICategories> = ({ items }) => {
+export const Categories: React.FC<ICategories> = ({ items, onClickItem }) => {
 
-    const [activeItem, setActiveItem] = React.useState<number | null>(null);
+    const [activeItem, setActiveItem] = React.useState<CategoryItem>(null);
 
-    const onSelectItem = (index: number | null): void => {
+    const onSelectItem = (index: CategoryItem): void => {
         setActiveItem(index);
+        onClickItem(index);
     }
 
     return (

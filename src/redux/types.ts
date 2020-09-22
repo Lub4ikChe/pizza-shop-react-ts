@@ -1,0 +1,3 @@
+export const SET_PIZZAS = 'PIZZA/SET_PIZZAS';
+export const SET_CATEGORY = 'FILTERS/SET_CATEGORY';
+

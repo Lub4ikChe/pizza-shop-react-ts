@@ -1,7 +1,10 @@
 import React from 'react'
 
 interface ISortPopup {
-    items: Array<string>,
+    items: Array<{
+        name: string,
+        type: string
+    }>,
 }
 
 export const SortPopup: React.FC<ISortPopup> = ({ items }) => {
@@ -9,7 +12,7 @@ export const SortPopup: React.FC<ISortPopup> = ({ items }) => {
     const [showPopup, setShowPopup] = React.useState<boolean>(false);
     const [activeItem, setActiveItem] = React.useState<number>(0);
     const sortRef = React.useRef<HTMLDivElement>(null);
-    const activeLabelName: string = items[activeItem];
+    const activeLabelName: string = items[activeItem].name;
 
     const onSelectItem = (index: number): void => {
         setActiveItem(index);
@@ -48,11 +51,11 @@ export const SortPopup: React.FC<ISortPopup> = ({ items }) => {
             {showPopup && (
                 <div className="sort__popup">
                     <ul>
-                        {items.map((name, index) => {
+                        {items.map((obj, index) => {
                             return (
                                 <li className={`${activeItem === index ? 'active' : ''}`}
                                     onClick={() => onSelectItem(index)}
-                                    key={`${name}_${index}`} >{name}</li>
+                                    key={`${obj.name}_${index}`} >{obj.name}</li>
                             )
                         })}
                     </ul>
