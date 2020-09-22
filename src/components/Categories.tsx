@@ -6,7 +6,7 @@ interface ICategories {
     onClickItem: (name: CategoryItem) => void,
 }
 
-export const Categories: React.FC<ICategories> = ({ items, onClickItem }) => {
+export const Categories: React.FC<ICategories> = React.memo(({ items, onClickItem }) => {
 
     const [activeItem, setActiveItem] = React.useState<CategoryItem>(null);
 
@@ -32,3 +32,4 @@ export const Categories: React.FC<ICategories> = ({ items, onClickItem }) => {
         </div>
     )
 }
+)

@@ -7,7 +7,7 @@ interface ISortPopup {
     }>,
 }
 
-export const SortPopup: React.FC<ISortPopup> = ({ items }) => {
+export const SortPopup: React.FC<ISortPopup> = React.memo(({ items }) => {
 
     const [showPopup, setShowPopup] = React.useState<boolean>(false);
     const [activeItem, setActiveItem] = React.useState<number>(0);
@@ -65,3 +65,4 @@ export const SortPopup: React.FC<ISortPopup> = ({ items }) => {
         </div>
     )
 }
+)
