@@ -3,28 +3,23 @@ import { CategoryItem } from '../redux/reducers/filters';
 
 interface ICategories {
     items: Array<string>,
-    onClickItem: (name: CategoryItem) => void,
+    onClickCategory: (index: CategoryItem) => void,
+    activeCategory: CategoryItem
+
 }
 
-export const Categories: React.FC<ICategories> = React.memo(({ items, onClickItem }) => {
-
-    const [activeItem, setActiveItem] = React.useState<CategoryItem>(null);
-
-    const onSelectItem = (index: CategoryItem): void => {
-        setActiveItem(index);
-        onClickItem(index);
-    }
+export const Categories: React.FC<ICategories> = React.memo(({ items, onClickCategory, activeCategory }) => {
 
     return (
         <div className="categories">
             <ul>
-                <li className={`${activeItem === null ? 'active' : ''}`}
-                    onClick={() => onSelectItem(null)}
+                <li className={`${activeCategory === null ? 'active' : ''}`}
+                    onClick={() => onClickCategory(null)}
                 >Все</li>
                 {items.map((name, index) => {
                     return (
-                        <li className={`${activeItem === index ? 'active' : ''}`}
-                            onClick={() => onSelectItem(index)}
+                        <li className={`${activeCategory === index ? 'active' : ''}`}
+                            onClick={() => onClickCategory(index)}
                             key={`${name}_${index}`} >{name}</li>
                     )
                 })}

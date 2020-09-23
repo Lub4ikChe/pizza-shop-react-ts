@@ -1,5 +1,5 @@
 import React from 'react'
-import { IPizzaItem } from '../interfaces'
+import { IPizzaItem } from '../../interfaces'
 import classNames from 'classnames';
 
 export const PizzaBlock: React.FC<IPizzaItem> = ({ name, imageUrl, price, types, sizes }) => {

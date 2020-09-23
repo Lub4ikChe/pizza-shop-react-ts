@@ -1,21 +1,20 @@
 import React from 'react'
+import { SortByItem } from '../redux/reducers/filters';
 
 interface ISortPopup {
-    items: Array<{
-        name: string,
-        type: string
-    }>,
+    items: Array<SortByItem>,
+    activeSortType: string,
+    onClickSortType: (sortObj: SortByItem) => void
 }
 
-export const SortPopup: React.FC<ISortPopup> = React.memo(({ items }) => {
+export const SortPopup: React.FC<ISortPopup> = React.memo(({ items, activeSortType, onClickSortType }) => {
 
     const [showPopup, setShowPopup] = React.useState<boolean>(false);
-    const [activeItem, setActiveItem] = React.useState<number>(0);
     const sortRef = React.useRef<HTMLDivElement>(null);
-    const activeLabelName: string = items[activeItem].name;
+    const activeLabelName = items.find(obj => obj.type === activeSortType)!.name;
 
-    const onSelectItem = (index: number): void => {
-        setActiveItem(index);
+    const onSelectItem = (sortObj: SortByItem): void => {
+        onClickSortType(sortObj);
     }
 
     const hendleOutsideClick = (event: any): void => {
@@ -53,8 +52,8 @@ export const SortPopup: React.FC<ISortPopup> = React.memo(({ items }) => {
                     <ul>
                         {items.map((obj, index) => {
                             return (
-                                <li className={`${activeItem === index ? 'active' : ''}`}
-                                    onClick={() => onSelectItem(index)}
+                                <li className={`${activeSortType === obj.type ? 'active' : ''}`}
+                                    onClick={() => onSelectItem(obj)}
                                     key={`${obj.name}_${index}`} >{obj.name}</li>
                             )
                         })}

@@ -1,5 +1,5 @@
-import { SET_CATEGORY } from './../types';
-import { FiltersActionTypes, CategoryItem } from './../reducers/filters';
+import { SET_CATEGORY, SET_SORT_TYPE } from './../types';
+import { FiltersActionTypes, CategoryItem, SortByItem } from './../reducers/filters';
 
 export const setCategory = (categoryIndex: CategoryItem): FiltersActionTypes => {
     return {
@@ -7,3 +7,11 @@ export const setCategory = (categoryIndex: CategoryItem): FiltersActionTypes => 
         payload: categoryIndex
     }
 }
+
+export const setSortType = (sortObj: SortByItem): FiltersActionTypes => {
+    return {
+        type: SET_SORT_TYPE,
+        payload: sortObj
+    }
+}
+

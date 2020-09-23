@@ -1,3 +1,5 @@
 export const SET_PIZZAS = 'PIZZA/SET_PIZZAS';
 export const SET_CATEGORY = 'FILTERS/SET_CATEGORY';
+export const SET_SORT_TYPE = 'FILTERS/SET_SORT_TYPE';
+export const SET_ISLOADED = 'PIZZA/SET_ISLOADED';
 
