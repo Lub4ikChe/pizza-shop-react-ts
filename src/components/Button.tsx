@@ -5,13 +5,16 @@ interface IButton {
     children: ReactNode,
     outline?: boolean,
     className?: string,
+    onClick?: () => void
 }
 
-export const Button: React.FC<IButton> = ({ className, outline, children }) => {
+export const Button: React.FC<IButton> = ({ className, outline, children, onClick }) => {
     return (
-        <button className={classNames('button', className, {
-            'button--outline': outline
-        })}>
+        <button
+            onClick={onClick}
+            className={classNames('button', className, {
+                'button--outline': outline
+            })}>
             {children}
         </button>
     )
