@@ -1,16 +1,15 @@
 import React from 'react'
-import { IPizzaItem } from '../../interfaces'
 import classNames from 'classnames';
 import { Button } from '../Button';
 import { IPizzaItemInCart } from '../../redux/reducers/cart';
+import { IPizzaItem } from '../../redux/reducers/pizzazs';
 
 interface IpizzaBlock extends IPizzaItem {
     onPizzaToCart: (pizzaObj: IPizzaItemInCart) => void,
-    addedCount: number
 };
 
-export const PizzaBlock: React.FC<IpizzaBlock> = ({ id, name, imageUrl, price, types, sizes, onPizzaToCart, addedCount }) => {
-    const availableTypes: Array<string> = ['тонкое', 'традиционное'];
+export const PizzaBlock: React.FC<IpizzaBlock> = ({ id, name, imageUrl, price, types, sizes, onPizzaToCart }) => {
+    const availableTypes: Array<string> = ['thin', 'traditional'];
     const availableSizes: Array<number> = [26, 30, 40];
     const [activeType, setActiveType] = React.useState<number>(types[0]);
     const [activeSize, setActiveSize] = React.useState<number>(0);
@@ -24,13 +23,15 @@ export const PizzaBlock: React.FC<IpizzaBlock> = ({ id, name, imageUrl, price, t
     }
 
     const hendelAddPizzaToCart = () => {
+        const size = availableSizes[activeSize];
+        const type = availableTypes[activeType];
         const obj = {
-            id,
+            id: `${id}_${size}_${type}`,
             name,
             imageUrl,
             price,
-            size: availableSizes[activeSize],
-            type: availableTypes[activeType]
+            size,
+            type
         }
         onPizzaToCart(obj);
     }
@@ -72,14 +73,14 @@ export const PizzaBlock: React.FC<IpizzaBlock> = ({ id, name, imageUrl, price, t
                                         'active': activeSize === index,
                                         'disabled': !sizes.includes(size),
                                     })}
-                                >{size} см.</li>
+                                >{size} cm.</li>
                             )
                         })
                     }
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">от {price} ₽</div>
+                <div className="pizza-block__price">From {price} ₴</div>
                 <Button onClick={hendelAddPizzaToCart} className={'button--add'} outline >
                     <svg
                         width="12"
@@ -93,8 +94,7 @@ export const PizzaBlock: React.FC<IpizzaBlock> = ({ id, name, imageUrl, price, t
                             fill="white"
                         />
                     </svg>
-                    <span>Добавить</span>
-                    {addedCount && <i>{addedCount}</i>}
+                    <span>Add</span>
                 </Button>
             </div>
         </div>

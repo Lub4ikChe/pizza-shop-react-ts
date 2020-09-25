@@ -15,7 +15,7 @@ export const Categories: React.FC<ICategories> = React.memo(({ items, onClickCat
             <ul>
                 <li className={`${activeCategory === null ? 'active' : ''}`}
                     onClick={() => onClickCategory(null)}
-                >Все</li>
+                >All</li>
                 {items.map((name, index) => {
                     return (
                         <li className={`${activeCategory === index ? 'active' : ''}`}

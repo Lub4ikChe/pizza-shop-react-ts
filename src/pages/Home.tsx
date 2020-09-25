@@ -5,22 +5,20 @@ import { getPizzaState } from '../redux/reducers/pizzazs';
 import { setCategory, setSortType } from '../redux/actions/filters';
 import { CategoryItem, getFiltersState, SortByItem } from '../redux/reducers/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
-import { getCartState, IPizzaItemInCart } from '../redux/reducers/cart';
+import { IPizzaItemInCart } from '../redux/reducers/cart';
 import { addPizzaToCart } from '../redux/actions/cart';
 
-const categoryNames: string[] = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const categoryNames: string[] = ['Meats', 'Vegetarian', 'Grill', 'Sharp', 'Covered'];
 const sortItems: Array<SortByItem> = [
-    { name: 'популярности', type: 'rating', order: 'desc' },
-    { name: 'цене', type: 'price', order: 'asc' },
-    { name: 'алфавиту', type: 'name', order: 'asc' }
+    { name: 'popularity', type: 'rating', order: 'desc' },
+    { name: 'price', type: 'price', order: 'asc' },
+    { name: 'alphabet', type: 'name', order: 'asc' }
 ];
 
 export const Home: React.FC = () => {
 
     const { items, isLoaded } = useSelector(getPizzaState);
     const { category, sortBy } = useSelector(getFiltersState);
-    const cartItems = useSelector(getCartState).items;
-
 
     const dispatch = useDispatch();
 
@@ -56,11 +54,10 @@ export const Home: React.FC = () => {
                     onClickSortType={onSelectSortType}
                 />
             </div>
-            <h2 className="content__title">Все пиццы</h2>
+            <h2 className="content__title">All pizzas</h2>
             <div className="content__items">
                 {
                     isLoaded ? items.map(obj => <PizzaBlock
-                        addedCount={cartItems[obj.id] && cartItems[obj.id].length}
                         onPizzaToCart={onAddPizzaToCart}
                         key={obj.id} {...obj} />) :
                         Array(10).fill(0).map((_, index) => <LoadingBlock key={index} />)

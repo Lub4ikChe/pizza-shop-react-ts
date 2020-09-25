@@ -1,6 +1,16 @@
 import { RootState } from './index';
 import { SET_PIZZAS, SET_ISLOADED } from './../types';
-import { IPizzaItem } from './../../interfaces';
+
+export interface IPizzaItem {
+    id: number,
+    imageUrl: string,
+    name: string,
+    types: Array<number>,
+    sizes: Array<number>,
+    price: number,
+    category: number,
+    rating: number,
+}
 
 interface IPizzasState {
     items: Array<IPizzaItem>,
