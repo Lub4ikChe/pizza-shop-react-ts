@@ -404,13 +404,14 @@ body {
 
   &--empty {
     margin: 0 auto;
-    width: 560px;
+    max-width: 560px;
     text-align: center;
 
     h2 {
       font-size: 32px;
       margin-bottom: 10px;
     }
+    
 
     p {
       font-size: 18px;
@@ -438,5 +439,24 @@ body {
       font-weight: 600;
       font-size: 18px;
     }
+
+    @media (max-width: 500px) {
+      h2 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      img {
+        width: 200px;
+      }
+
+      .button--black {
+        width: 160px;
+      }
+     }
+
   }
 }

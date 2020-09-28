@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Categories, LoadingBlock, PizzaBlock, SortPopup } from '../components/index';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPizzaState } from '../redux/reducers/pizzazs';
@@ -15,8 +15,8 @@ const sortItems: Array<SortByItem> = [
     { name: 'alphabet', type: 'name', order: 'asc' }
 ];
 
-export const Home: React.FC = () => {
 
+export const Home: React.FC = () => {
     const { items, isLoaded } = useSelector(getPizzaState);
     const { category, sortBy } = useSelector(getFiltersState);
 

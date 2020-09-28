@@ -26,6 +26,9 @@ export const SortPopup: React.FC<ISortPopup> = React.memo(({ items, activeSortTy
 
     React.useEffect(() => {
         document.body.addEventListener('click', hendleOutsideClick);
+        return (): void => {
+            document.body.removeEventListener('click', hendleOutsideClick);
+        }
     }, [])
 
     return (

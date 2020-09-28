@@ -5,7 +5,6 @@ interface ICategories {
     items: Array<string>,
     onClickCategory: (index: CategoryItem) => void,
     activeCategory: CategoryItem
-
 }
 
 export const Categories: React.FC<ICategories> = React.memo(({ items, onClickCategory, activeCategory }) => {

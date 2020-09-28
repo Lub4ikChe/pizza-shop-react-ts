@@ -60,7 +60,7 @@ export const CartItem: React.FC<ICartItem> = ({ imageUrl, name, type, size, tota
                 </div>
             </div>
             <div className="cart__item-price">
-                <b>{totalCount * price} ₽</b>
+                <b>{totalCount * price} ₴</b>
             </div>
             <div
                 onClick={() => hendleRemoveItem(id)}
